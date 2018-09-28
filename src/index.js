@@ -1,19 +1,18 @@
 module.exports = function check(str, bracketsConfig) {
-  // your solution
-  //var Skob = str.split('');
-  //if(str.length % 2 == 1) return false; else return true;
-
-  var check = [];
-  for (let i = 0; i < str.length; i++) 
-  {
-    for (let j = 0; j < bracketsConfig.length; j++) {
-      if (str[i] == bracketsConfig[j][0]) check.push(str[i]);
-      if (str[i] == bracketsConfig[j][1]) check.pop(str[i]);  
-     
+var check = [];
+  for (var i = 0; i < str.length; i++) {
+    for (var j = 0; j < bracketsConfig.length; j++) {
+      if (str[i] == bracketsConfig[j][0] && str[i] == bracketsConfig[j][1] && str[i]=== check[check.length - 1] ) { 
+       check.pop(str[i]); break;       
+     }
+      if (str[i] == bracketsConfig[j][0] ) { 
+        check.push(str[i]); break;
+      }
+      if (str[i] == bracketsConfig[j][1] ) { 
+        let lastOpened = check.pop(str[i]);
+        if (lastOpened !== bracketsConfig[j][0])  return false;
+      }
     }
   }
-  if (check == 0) return true;
-  else return false;
-
- 
+  return check.length == 0;
 }
